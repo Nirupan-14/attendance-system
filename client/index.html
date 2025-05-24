@@ -54,29 +54,30 @@
                     })
                 });
     
-                if (!response.ok) {
-                    // If server returns a 4xx or 5xx status code
-                    alert('Login failed: Server error');
-                    return;
-                }
+                const text = await response.text(); // read raw text (could be success or error)
     
-                const data = await response.json();
-                console.log("Response data:", data);
-    
-                // Assuming your API returns { token: 'some-token' } on success
-                if (data.token) {
-                    alert('Login successful!');
-                    // You can also redirect or do something here after successful login
-                    // window.location.href = '/dashboard.html'; 
+                if (response.ok) {
+                    const data = JSON.parse(text); // safely parse JSON if successful
+                    if (data.token) {
+                        alert('Login successful!');
+                        // Store token or redirect if needed
+                        // localStorage.setItem('token', data.token);
+                        // window.location.href = '/dashboard.html';
+                    } else {
+                        alert('Unexpected error occurred.');
+                    }
                 } else {
-                    alert('Login failed: Invalid username or password');
+                    // Display server error message like "Invalid username" or "Invalid password"
+                    alert(`Login failed: ${text}`);
                 }
+    
             } catch (error) {
                 console.error('Error during login:', error);
                 alert('Login failed: Network or server error');
             }
         });
     </script>
+    
     
 </body>
 </html>

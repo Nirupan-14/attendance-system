@@ -29,16 +29,19 @@ public class LoginController {
         try {
             Map<String, String> storedCredentials = readCredentialsFromFile();
 
-            if (storedCredentials.containsKey(username) &&
-                    Objects.equals(storedCredentials.get(username), password)) {
-
-                String token = JwtUtil.generateToken(username);
-                Map<String, String> response = new HashMap<>();
-                response.put("token", token);
-                return ResponseEntity.ok(response);
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password.");
+            if (!storedCredentials.containsKey(username)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username.");
             }
+
+            if (!Objects.equals(storedCredentials.get(username), password)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password.");
+            }
+
+            String token = JwtUtil.generateToken(username);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return ResponseEntity.ok(response);
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error occurred.");
         }
@@ -50,7 +53,9 @@ public class LoginController {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
                 getClass().getClassLoader().getResourceAsStream("credentials.txt")))) {
 
-            
+            if (reader == null) {
+                throw new Exception("credentials.txt file not found.");
+            }
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -60,6 +65,7 @@ public class LoginController {
                 }
             }
         }
+
         return credentials;
     }
 }
