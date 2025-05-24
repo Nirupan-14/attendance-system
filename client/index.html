@@ -3,84 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Attendance System</title>
+    <title>School Login - Attendance System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="page active">
-        <div class="container">
-            <div class="header">
-                <h1>🎓 School Portal</h1>
-                <p>Attendance Management System</p>
-            </div>
-            <div class="form-container">
-                <div id="loginError" class="error-message"></div>
-                <form id="loginForm">
-                    <div class="input-group">
-                        <input type="text" id="username" placeholder=" " required>
-                        <label for="username">👤 Username</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" id="password" placeholder=" " required>
-                        <label for="password">🔒 Password</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Login to Dashboard
-                    </button>
-                </form>
-                <div id="loginLoading" class="loading">
-                    <div class="spinner"></div>
-                    <p>Authenticating...</p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 School Portal</h1>
+            <p>Attendance Management System</p>
         </div>
-    </div>
-
-    <!-- Home Page -->
-    <div id="homePage" class="page">
-        <div class="container">
-            <div class="header">
-                <h1>🏫 Welcome Back!</h1>
-                <p>Attendance Dashboard</p>
-            </div>
-            <div class="form-container">
-                <div class="welcome-message">
-                    <h2>Hello, <span id="welcomeUser">Student</span>! 👋</h2>
-                    <p>Ready to manage your attendance today?</p>
+        <div class="form-container">
+            <div id="loginError" class="error-message"></div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder=" " required>
+                    <label for="username">👤 Username</label>
                 </div>
-                
-                <div class="user-info">
-                    <h3>Logged in as: <span id="currentUser">Unknown</span></h3>
-                    <p>Session active since <span id="loginTime"></span></p>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " required>
+                    <label for="password">🔒 Password</label>
                 </div>
-
-                <div class="features">
-                    <div class="feature-card">
-                        <h4>📊 Dashboard</h4>
-                        <p>View stats</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>✅ Mark Present</h4>
-                        <p>Quick check-in</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📅 Calendar</h4>
-                        <p>View schedule</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📈 Reports</h4>
-                        <p>Attendance data</p>
-                    </div>
-                </div>
-
-                <button id="logoutBtn" class="btn btn-secondary">
-                    🚪 Logout
+                <button type="submit" class="btn btn-primary">
+                    Login to Dashboard
                 </button>
+            </form>
+            <div id="loginLoading" class="loading">
+                <div class="spinner"></div>
+                <p>Authenticating...</p>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>

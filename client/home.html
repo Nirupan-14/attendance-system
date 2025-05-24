@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Dashboard - Attendance System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏫 Welcome Back!</h1>
+            <p>Attendance Dashboard</p>
+        </div>
+        <div class="form-container">
+            <div class="welcome-message">
+                <h2>Hello, <span id="welcomeUser">Student</span>! 👋</h2>
+                <p>Ready to manage your attendance today?</p>
+            </div>
+            
+            <div class="user-info">
+                <h3>Logged in as: <span id="currentUser">Demo User</span></h3>
+                <p>Session active since <span id="loginTime"></span></p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card" onclick="handleFeatureClick('dashboard')">
+                    <h4>📊 Dashboard</h4>
+                    <p>View stats</p>
+                </div>
+                <div class="feature-card" onclick="handleFeatureClick('attendance')">
+                    <h4>✅ Mark Present</h4>
+                    <p>Quick check-in</p>
+                </div>
+                <div class="feature-card" onclick="handleFeatureClick('calendar')">
+                    <h4>📅 Calendar</h4>
+                    <p>View schedule</p>
+                </div>
+                <div class="feature-card" onclick="handleFeatureClick('reports')">
+                    <h4>📈 Reports</h4>
+                    <p>Attendance data</p>
+                </div>
+            </div>
+
+            <button id="logoutBtn" class="btn btn-secondary" onclick="handleLogout()">
+                🚪 Logout
+            </button>
+        </div>
+    </div>
+
+   
+</body>
+</html>
