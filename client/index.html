@@ -38,11 +38,14 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            
+
             try {
+                // Show loading (optional)
+                document.getElementById('loginLoading').style.display = 'block';
+
                 const response = await fetch('http://localhost:8080/api/login', {
                     method: 'POST',
                     headers: {
@@ -50,15 +53,16 @@
                     },
                     body: JSON.stringify({ username, password })
                 });
-    
+
                 const text = await response.text();
-    
+
+                document.getElementById('loginLoading').style.display = 'none';
+
                 if (response.ok) {
                     const data = JSON.parse(text);
                     if (data.token) {
-                        
                         localStorage.setItem('token', data.token);
-    
+
                         // Redirect to home.html
                         window.location.href = 'home.html';
                     } else {
@@ -67,8 +71,8 @@
                 } else {
                     alert(`Login failed: ${text}`);
                 }
-    
             } catch (error) {
+                document.getElementById('loginLoading').style.display = 'none';
                 console.error('Error during login:', error);
                 alert('Login failed: Network or server error');
             }
