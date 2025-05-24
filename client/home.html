@@ -49,12 +49,24 @@
     </div>
 
     <script>
-        function handleLogout() {
+        
+        const token = localStorage.getItem('token');
     
-            // Redirect to index.html (login page)
+        if (!token) {
+            
+            window.location.href = 'index.html';
+        } else {
+            
+            console.log("User is logged in.");
+        }
+    
+        function handleLogout() {
+            // Remove token and redirect to login page
+            localStorage.removeItem('token');
             window.location.href = 'index.html';
         }
     </script>
+    
 
    
 </body>
