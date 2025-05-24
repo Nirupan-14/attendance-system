@@ -48,26 +48,23 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
+                    body: JSON.stringify({ username, password })
                 });
     
-                const text = await response.text(); // read raw text (could be success or error)
+                const text = await response.text();
     
                 if (response.ok) {
-                    const data = JSON.parse(text); // safely parse JSON if successful
+                    const data = JSON.parse(text);
                     if (data.token) {
-                        alert('Login successful!');
-                        // Store token or redirect if needed
-                        // localStorage.setItem('token', data.token);
-                        // window.location.href = '/dashboard.html';
+                        
+                        localStorage.setItem('token', data.token);
+    
+                        // Redirect to home.html
+                        window.location.href = 'home.html';
                     } else {
-                        alert('Unexpected error occurred.');
+                        alert('Unexpected error: Token missing.');
                     }
                 } else {
-                    // Display server error message like "Invalid username" or "Invalid password"
                     alert(`Login failed: ${text}`);
                 }
     
@@ -77,6 +74,7 @@
             }
         });
     </script>
+    
     
     
 </body>
