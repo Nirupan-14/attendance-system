@@ -34,5 +34,49 @@
         </div>
     </div>
 
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('http://localhost:8080/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+    
+                if (!response.ok) {
+                    // If server returns a 4xx or 5xx status code
+                    alert('Login failed: Server error');
+                    return;
+                }
+    
+                const data = await response.json();
+                console.log("Response data:", data);
+    
+                // Assuming your API returns { token: 'some-token' } on success
+                if (data.token) {
+                    alert('Login successful!');
+                    // You can also redirect or do something here after successful login
+                    // window.location.href = '/dashboard.html'; 
+                } else {
+                    alert('Login failed: Invalid username or password');
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('Login failed: Network or server error');
+            }
+        });
+    </script>
+    
 </body>
 </html>

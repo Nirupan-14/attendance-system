@@ -14,6 +14,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class LoginController {
 
     @PostMapping("/login")
